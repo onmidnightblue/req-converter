@@ -5,24 +5,31 @@ interface Props {
 }
 
 const Result = ({ result }: Props) => {
-  const [clipboardState, setClipboardState] = useState<string>("");
+  const [copyState, setCopyState] = useState<string>("");
 
-  const clipboadHandler = async () => {
+  const clipboardHandler = async () => {
     try {
+      setCopyState("···");
       await navigator.clipboard.writeText(result);
-      setClipboardState("success");
+      setCopyState("✓");
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      setCopyState("");
     } catch {
-      setClipboardState("error");
+      setCopyState("error");
     }
   };
 
   return (
     result && (
-      <div className="flex flex-col gap-4 p-12">
-        <div onClick={clipboadHandler}>clipboad</div>
-        {clipboardState && (
-          <div className="fixed top-1/2 left-1/2">{clipboardState}</div>
-        )}
+      <div className="flex flex-col gap-2 p-12 pt-0">
+        <div className="flex justify-end">
+          <div
+            className="cursor-pointer text-xs border py-1 px-2 rounded-md hover:border-gray-400 hover:text-gray-600 transition duration-100 min-w-20 text-center"
+            onClick={clipboardHandler}
+          >
+            {copyState || "Ctrl + C"}
+          </div>
+        </div>
         <div className="p-4 rounded-md bg-gray-100 whitespace-pre-wrap">
           {result}
         </div>

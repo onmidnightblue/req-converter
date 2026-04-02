@@ -12,7 +12,23 @@ export const parseMemberData = (enteredSummary: string) => {
 export const parseContentData = (enteredContent: string) => {
   const regexContent = enteredContent.match(/(1\.[\s\S]*?)(?=담당자\s*:)/);
   const content = regexContent?.[1];
-  const result = content?.replace(/(1\.)\s*\n+/, "$1 ").trim();
+
+  const result = content
+    ?.replace(/([가-힣\w·()[\]])\s*\n+\s*([가-힣\w·()[\]])/g, "$1 $2") // 전체 줄바꿈 제거
+    .replace(/(?<=\S)\s+(\d+(?:-\d+)?\.)/g, "\n$1")
+    .replace(
+      /(?<![a-zA-Z0-9])-(?![a-zA-Z0-9])|(?<=[가-힣])-|-/g,
+      (_, offset, str) => {
+        const isWordBound = /[a-zA-Z0-9]-[a-zA-Z0-9]/.test(
+          str.substr(offset - 1, 3)
+        );
+        return isWordBound ? "-" : "\n  -";
+      }
+    )
+    .replace(/^(1\.)\s*\n+/, "$1 ")
+    .replace(/\n\s*\n/g, "\n")
+    .replace(/[ ]{2,}/g, " ")
+    .trim();
 
   return result;
 };
