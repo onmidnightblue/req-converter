@@ -1,9 +1,9 @@
 interface Props {
-  id: "summary" | "requestDetails";
+  id: "enteredSummary" | "enteredContent";
   label: string;
   value: string;
   changeHandler: (params: {
-    key: "summary" | "requestDetails";
+    key: "enteredSummary" | "enteredContent";
     value: string;
   }) => void;
 }

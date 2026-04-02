@@ -1,7 +1,7 @@
 interface Props {
   type?: "submit" | "reset";
-  clickHandler: () => void;
   label: string;
+  clickHandler: () => void;
 }
 
 const Button = ({ type, label, clickHandler }: Props) => {

@@ -18,12 +18,14 @@ const Result = ({ result }: Props) => {
 
   return (
     result && (
-      <div>
+      <div className="flex flex-col gap-4 p-12">
         <div onClick={clipboadHandler}>clipboad</div>
         {clipboardState && (
           <div className="fixed top-1/2 left-1/2">{clipboardState}</div>
         )}
-        <div className="border rounded-md bg-gray-100">{result}</div>
+        <div className="p-4 rounded-md bg-gray-100 whitespace-pre-wrap">
+          {result}
+        </div>
       </div>
     )
   );
