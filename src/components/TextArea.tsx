@@ -1,11 +1,10 @@
+export type InputFieldType = "enteredSummary" | "enteredContent";
+
 interface Props {
-  id: "enteredSummary" | "enteredContent";
+  id: InputFieldType;
   label: string;
   value: string;
-  changeHandler: (params: {
-    key: "enteredSummary" | "enteredContent";
-    value: string;
-  }) => void;
+  changeHandler: (params: { key: InputFieldType; value: string }) => void;
 }
 
 const TextArea = ({ id, label, value, changeHandler }: Props) => {

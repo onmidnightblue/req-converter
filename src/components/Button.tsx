@@ -4,14 +4,18 @@ interface Props {
   clickHandler: () => void;
 }
 
+const BUTTON_STYLES: Record<string, string> = {
+  reset: "bg-blue-100 text-black",
+  submit: "bg-blue-400 text-white",
+};
+
 const Button = ({ type, label, clickHandler }: Props) => {
   return (
     <button
       type={type}
       className={`cursor-pointer  transition-colors rounded-md w-full px-4 py-2 ${
-        type === "reset" ? "bg-blue-100" : "bg-blue-400"
+        BUTTON_STYLES[type || "submit"]
       }
-      ${type === "reset" ? "text-black" : "text-white"}
       `}
       onClick={clickHandler}
     >
