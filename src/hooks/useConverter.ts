@@ -72,6 +72,7 @@ export const useConverter = (entered: EnteredState) => {
   return {
     result,
     summaryResult,
+    setSummaryResult,
     errorMessage,
     converter,
     setResult,

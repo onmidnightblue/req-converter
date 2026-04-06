@@ -15,22 +15,25 @@ function App() {
   });
   const {
     result,
+    setResult,
     summaryResult,
+    setSummaryResult,
     errorMessage,
     converter,
-    setResult,
     setErrorMessage,
   } = useConverter(entered);
 
   const changeHandler = ({ key, value }: ChangeHandlerProps) => {
     setEntered((prev) => ({ ...prev, [key]: value }));
     setResult("");
+    setSummaryResult(null);
     setErrorMessage("");
   };
 
   const resetHandler = () => {
     setEntered({ enteredSummary: "", enteredContent: "" });
     setResult("");
+    setSummaryResult(null);
     setErrorMessage("");
   };
 
