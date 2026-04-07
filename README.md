@@ -1,73 +1,62 @@
-# React + TypeScript + Vite
+# 휴먼에러를 줄이기 위한 메세지 변환기
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+2번 실수 후 번복하지 않기 위해 제작한 업무 자동화 도구입니다.
+지저분한 텍스트를 복사해 넣으면, 정제된 업무용 메세지 양식으로 변환합니다.
 
-Currently, two official plugins are available:
+<br><br>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### ✨ Features
 
-## React Compiler
+- **의원 정보 자동 조회** — 공공데이터 포털 API 연동으로 소속 정보 정확도 확보
+- **담당자 자동 배정** — 기존 약속 및 요일에 따른 담당자 자동 매칭
+- **유연한 편집** — 반환된 결과물을 즉각적으로 수정 가능
+- **클립보드** — 버튼 하나로 결과물 복사하여 메신저에 바로 공유
+- **더블체크** — 실수를 방지하기 위한 핵심 정보 요약
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+<br><br>
 
-## Expanding the ESLint configuration
+### 🏃 Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1. .env 파일을 생성하고, 아래 항목을 입력해야 합니다.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+```
+# 담당 주무관님 성함
+VITE_ASSIGNEE_1 = '홍길동'
+VITE_ASSIGNEE_2 = '이영희'
+VITE_ASSIGNEE_3 = '김철수'
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 공공데이터포털 API Key
+VITE_GOVERNMENT_API_KEY = 'YOUR_API_KEY_HERE'
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+<br>
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+2. 간단한 명령어로 개발 환경을 실행할 수 있습니다.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+npm install
+npm run dev
+```
+
+<br><br>
+
+### 🔄 Before & After
+
+| 구분      | 내용                                                                                                                                                 |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 기존 요청 | 시스템 화면 전체 복사(불필요한UI텍스트 포함) `CTRL + A` > `CTRL + C`                                                                                 |
+| 반환 결과 | 홍길동 주무관님 <br><br>[김철수 의원(OO위, OO위)]<br><br>1. OOO 관련 자료요구<br> OOO 관련하여 OOO한 자료 부탁드립니다.<br><br>답변기한 : 2026-04-08 |
+
+<br><br>
+
+### 🔨 Tech Stack
+
+- Frontend: `React`, `TypeScript`
+- Build Tool: `Vite`
+- API: `공공데이터포털 (국회의원 인적사항)`
+
+<br><br>
+
+### 🔑 Security & Privacy
+
+- 본 도구는 입력된 텍스트를 별도의 서버에 저장하지 않으며, 모든 변환 프로세스는 사용자의 브라우저 내에서만 처리됩니다.
