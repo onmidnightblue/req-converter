@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { EnteredState } from "../types";
+import type { EnteredState, SummaryResult } from "../types";
 import { parseContentData, parseMemberData } from "../utils/regex";
 import { generateFormat, getManager } from "../utils/converter";
 import { getCommitteeName } from "../api/api";
@@ -11,13 +11,9 @@ import {
 
 export const useConverter = (entered: EnteredState) => {
   const [result, setResult] = useState("");
-  const [summaryResult, setSummaryResult] = useState<{
-    memberName: string;
-    committee: string;
-    managerName: string;
-    dueDate: string;
-    requestedDate: string;
-  } | null>(null);
+  const [summaryResult, setSummaryResult] = useState<SummaryResult | null>(
+    null
+  );
   const [errorMessage, setErrorMessage] = useState("");
 
   const converter = async (e?: React.SubmitEvent) => {
@@ -70,12 +66,9 @@ export const useConverter = (entered: EnteredState) => {
   };
 
   return {
-    result,
-    summaryResult,
-    setSummaryResult,
-    errorMessage,
+    result: { value: result, set: setResult },
+    summary: { value: summaryResult, set: setSummaryResult },
+    error: { value: errorMessage, set: setErrorMessage },
     converter,
-    setResult,
-    setErrorMessage,
   };
 };

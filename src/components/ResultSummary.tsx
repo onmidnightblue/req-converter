@@ -2,7 +2,7 @@ import { DAYS } from "../constants/days";
 import { ASSIGNED_DAY } from "../constants/members";
 
 interface Props {
-  summaryResult: {
+  summary: {
     memberName: string;
     committee: string;
     managerName: string;
@@ -11,9 +11,9 @@ interface Props {
   } | null;
 }
 
-const ResultSummary = ({ summaryResult }: Props) => {
+const ResultSummary = ({ summary }: Props) => {
   const { memberName, committee, managerName, dueDate, requestedDate } =
-    summaryResult || {};
+    summary || {};
   const dayNumber = requestedDate ? new Date(requestedDate)?.getDay() : "";
   const findDayKorean = dayNumber ? DAYS[dayNumber] : "";
   const manager = dayNumber ? ASSIGNED_DAY[dayNumber] : "";
@@ -27,7 +27,7 @@ const ResultSummary = ({ summaryResult }: Props) => {
   };
 
   return (
-    summaryResult && (
+    summary && (
       <div className="w-full flex flex-col gap-2">
         <p>요약</p>
         <ul className="flex flex-col gap-2">

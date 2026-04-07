@@ -13,20 +13,12 @@ function App() {
     enteredSummary: "",
     enteredContent: "",
   });
-  const {
-    result,
-    setResult,
-    summaryResult,
-    setSummaryResult,
-    errorMessage,
-    converter,
-    setErrorMessage,
-  } = useConverter(entered);
+  const { result, summary, error, converter } = useConverter(entered);
 
   const enteredResetHandler = () => {
-    setResult("");
-    setSummaryResult(null);
-    setErrorMessage("");
+    result.set("");
+    summary.set(null);
+    error.set("");
   };
 
   const changeHandler = ({ key, value }: ChangeHandlerProps) => {
@@ -71,11 +63,11 @@ function App() {
             />
             <Button type={"submit"} label={"변환"} clickHandler={converter} />
           </div>
-          <ErrorMessage errorMessage={errorMessage} />
+          <ErrorMessage error={error.value} />
         </form>
         <div className="w-full flex gap-4">
-          <ResultSummary summaryResult={summaryResult} />
-          <Result result={result} setResult={setResult} />
+          <ResultSummary summary={summary.value} />
+          <Result result={result.value} setResult={result.set} />
         </div>
       </main>
     </>

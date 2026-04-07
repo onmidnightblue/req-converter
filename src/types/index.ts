@@ -21,3 +21,11 @@ export interface FormatOptions {
   content: string;
   dueDate: string;
 }
+
+export interface SummaryResult {
+  memberName: string;
+  committee: string;
+  managerName: string;
+  dueDate: string;
+  requestedDate: string;
+}

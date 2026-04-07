@@ -9,10 +9,6 @@ interface Props {
 const Result = ({ result, setResult }: Props) => {
   const [copyState, setCopyState] = useState<string>("");
 
-  const changeHandler = (value: string) => {
-    setResult(value);
-  };
-
   const clipboardHandler = async () => {
     if (!result.trim()) return;
     try {
@@ -33,7 +29,7 @@ const Result = ({ result, setResult }: Props) => {
         id={"result"}
         label={"결과"}
         value={result}
-        changeHandler={(value) => changeHandler(value)}
+        changeHandler={setResult}
         isAutoHeight={true}
       />
       <div className="flex justify-end absolute top-0 right-0">

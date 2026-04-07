@@ -1,13 +1,9 @@
 interface Props {
-  errorMessage: string;
+  error: string;
 }
 
-const ErrorMessage = ({ errorMessage }: Props) => {
-  return (
-    errorMessage && (
-      <div className="text-red-800 text-center">{errorMessage}</div>
-    )
-  );
+const ErrorMessage = ({ error }: Props) => {
+  return error && <div className="text-red-800 text-center">{error}</div>;
 };
 
 export default ErrorMessage;
