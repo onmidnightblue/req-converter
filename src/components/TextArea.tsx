@@ -17,7 +17,7 @@ const TextArea = ({ id, label, value, changeHandler, isAutoHeight }: Props) => {
       const scrollTop = window.scrollY;
       textarea.style.height = "auto";
       const nextHeight = textarea.scrollHeight;
-      textarea.style.height = `${nextHeight}px`;
+      textarea.style.height = `${nextHeight + 200}px`;
       if (scrollTop !== window.scrollY) {
         window.scrollTo(0, scrollTop);
       }
@@ -36,7 +36,7 @@ const TextArea = ({ id, label, value, changeHandler, isAutoHeight }: Props) => {
         id={id}
         value={value}
         onChange={(e) => changeHandler(e.target.value)}
-        className={`border min-h-20 rounded-md outline-none ${
+        className={`border min-h-20 rounded-md outline-none break-all ${
           isAutoHeight ? "resize-none overflow-hidden" : ""
         }`}
       />

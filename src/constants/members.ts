@@ -1,7 +1,7 @@
 const {
-  VITE_ASSIGNEE_1: ASSIGNEE_1,
-  VITE_ASSIGNEE_2: ASSIGNEE_2,
-  VITE_ASSIGNEE_3: ASSIGNEE_3,
+  VITE_ASSIGNEE_1: ASSIGNEE_1 = '담당자1',
+  VITE_ASSIGNEE_2: ASSIGNEE_2 = '담당자2',
+  VITE_ASSIGNEE_3: ASSIGNEE_3 = '담당자3',
 } = import.meta.env || {};
 
 export const ASSIGNED_DAY: Record<number, string> = {

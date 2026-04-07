@@ -31,7 +31,7 @@ export const parseContentData = (enteredContent: string) => {
 
   const result = content
     ?.replace(CLEANUP_PATTERNS.LINEBREAK_REMOVAL, "$1 $2")
-    .replace(CLEANUP_PATTERNS.LINEBREAK_BEFORE_INDEX, "\n$1")
+    ?.replace(CLEANUP_PATTERNS.LINEBREAK_BEFORE_INDEX, "\n$1")
     .replace(CLEANUP_PATTERNS.FORMAT_HYPHEN, (_, offset, str) => {
       const isWordBound = CLEANUP_PATTERNS.PROTECT_INLINE_HYPHEN.test(
         str.substring(offset - 1, offset + 2)
