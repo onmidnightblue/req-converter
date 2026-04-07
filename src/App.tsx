@@ -23,18 +23,20 @@ function App() {
     setErrorMessage,
   } = useConverter(entered);
 
-  const changeHandler = ({ key, value }: ChangeHandlerProps) => {
-    setEntered((prev) => ({ ...prev, [key]: value }));
+  const enteredResetHandler = () => {
     setResult("");
     setSummaryResult(null);
     setErrorMessage("");
   };
 
+  const changeHandler = ({ key, value }: ChangeHandlerProps) => {
+    setEntered((prev) => ({ ...prev, [key]: value }));
+    enteredResetHandler();
+  };
+
   const resetHandler = () => {
     setEntered({ enteredSummary: "", enteredContent: "" });
-    setResult("");
-    setSummaryResult(null);
-    setErrorMessage("");
+    enteredResetHandler();
   };
 
   return (
