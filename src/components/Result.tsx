@@ -32,7 +32,7 @@ const Result = ({ result, setResult }: Props) => {
         changeHandler={setResult}
         isAutoHeight={true}
       />
-      <div className="flex justify-end absolute top-0 right-0">
+      <div className="flex justify-end absolute top-10 right-4">
         <div
           className="cursor-pointer text-xs rounded-md hover:border-gray-400 hover:text-blue-400"
           onClick={clipboardHandler}

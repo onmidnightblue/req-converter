@@ -65,7 +65,7 @@ function App() {
           </div>
           <ErrorMessage error={error.value} />
         </form>
-        <div className="w-full flex gap-4">
+        <div className="py-8 flex flex-col gap-4">
           <ResultSummary summary={summary.value} />
           <Result result={result.value} setResult={result.set} />
         </div>
